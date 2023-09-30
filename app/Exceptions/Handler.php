@@ -36,7 +36,6 @@ class Handler extends ExceptionHandler
      * Convert an authentication exception into a response.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Auth\AuthenticationException  $exception
      * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     protected function unauthenticated($request, AuthenticationException $exception)
@@ -46,11 +45,9 @@ class Handler extends ExceptionHandler
             : redirect()->to($exception->redirectTo() ?? route('login'));
     }
 
-
     /**
      * Create a response object from the given validation exception.
      *
-     * @param  \Illuminate\Validation\ValidationException  $e
      * @param  \Illuminate\Http\Request  $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -69,7 +66,6 @@ class Handler extends ExceptionHandler
      * Render a default exception response if any.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Throwable  $e
      * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     protected function renderExceptionResponse($request, Throwable $e)
@@ -83,7 +79,6 @@ class Handler extends ExceptionHandler
      * Convert a validation exception into a JSON response.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Validation\ValidationException  $exception
      * @return \Illuminate\Http\JsonResponse
      */
     protected function invalidJson($request, ValidationException $exception)
@@ -91,12 +86,10 @@ class Handler extends ExceptionHandler
         return Api::error($exception->getMessage(), $exception->errors(), $exception->status);
     }
 
-
     /**
      * Prepare a JSON response for the given exception.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Throwable  $e
      * @return \Illuminate\Http\JsonResponse
      */
     protected function prepareJsonResponse($request, Throwable $e)

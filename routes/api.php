@@ -17,14 +17,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return Api::success([
-        'message' => 'Welcome to the API'
+        'message' => 'Welcome to the API',
     ]);
 });
 
 // Example of protected route
 Route::get('/protected', function () {
     return Api::success([
-        'protected' => 'This is a protected route'
+        'protected' => 'This is a protected route',
     ]);
 })->middleware('auth');
 
@@ -33,12 +33,12 @@ Route::get('/login', function () {
 
     $token = Auth::attempt($data);
 
-    if (!$token) {
+    if (! $token) {
         return Api::error('Invalid credentials');
     }
 
     return Api::success([
-        'token' => $token->toString()
+        'token' => $token->toString(),
     ]);
 })->middleware('guest');
 

@@ -27,7 +27,7 @@ class Api
         if ($data) {
             $key = 'data';
 
-            if (!$sucess) {
+            if (! $sucess) {
                 $key = 'errors';
             }
 

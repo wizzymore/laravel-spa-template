@@ -1,11 +1,6 @@
 <?php
 
-use Illuminate\Support\Carbon;
-use Lcobucci\Clock\SystemClock;
 use Lcobucci\JWT\Token;
-use Lcobucci\JWT\Validation\Constraint\IssuedBy;
-use Lcobucci\JWT\Validation\Constraint\SignedWith;
-use Lcobucci\JWT\Validation\Constraint\StrictValidAt;
 
 function jwt_builder()
 {

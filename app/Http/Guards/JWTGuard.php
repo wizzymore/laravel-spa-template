@@ -21,11 +21,11 @@ class JWTGuard implements Guard
     public function user()
     {
         $token = $this->request->bearerToken();
-        if (!$token) {
+        if (! $token) {
             return null;
         }
 
-        if (!jwt_valid($token)) {
+        if (! jwt_valid($token)) {
             return null;
         }
 
@@ -33,7 +33,7 @@ class JWTGuard implements Guard
         assert($token instanceof UnencryptedToken);
 
         $id = $token->claims()->get('sub');
-        if (!$id) {
+        if (! $id) {
             return null;
         }
 
