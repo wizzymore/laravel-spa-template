@@ -1,0 +1,1 @@
+<div>Svelte app</div>
