@@ -33,7 +33,7 @@ Route::get('/login', function () {
 
     $token = Auth::attempt($data);
 
-    if (! $token) {
+    if (!$token) {
         return Api::error('Invalid credentials');
     }
 
@@ -41,7 +41,3 @@ Route::get('/login', function () {
         'token' => $token->toString(),
     ]);
 })->middleware('guest');
-
-Route::get('{any}', function () {
-    Api::notFound();
-})->where('any', '.*');

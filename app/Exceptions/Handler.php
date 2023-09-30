@@ -40,9 +40,7 @@ class Handler extends ExceptionHandler
      */
     protected function unauthenticated($request, AuthenticationException $exception)
     {
-        return str_starts_with($request->getPathInfo(), '/api')
-            ? Api::error($exception->getMessage(), [], 401)
-            : redirect()->to($exception->redirectTo() ?? route('login'));
+        return Api::error($exception->getMessage(), [], 401);
     }
 
     /**
@@ -57,9 +55,7 @@ class Handler extends ExceptionHandler
             return $e->response;
         }
 
-        return str_starts_with($request->getPathInfo(), '/api')
-            ? $this->invalidJson($request, $e)
-            : $this->invalid($request, $e);
+        return $this->invalidJson($request, $e);
     }
 
     /**
@@ -70,9 +66,7 @@ class Handler extends ExceptionHandler
      */
     protected function renderExceptionResponse($request, Throwable $e)
     {
-        return str_starts_with($request->getPathInfo(), '/api')
-            ? $this->prepareJsonResponse($request, $e)
-            : $this->prepareResponse($request, $e);
+        return $this->prepareJsonResponse($request, $e);
     }
 
     /**
