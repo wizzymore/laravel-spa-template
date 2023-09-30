@@ -103,7 +103,7 @@ class Handler extends ExceptionHandler
     {
         return Api::error(
             $e->getMessage(),
-            [$this->convertExceptionToArray($e)],
+            app()->hasDebugModeEnabled() ? [$this->convertExceptionToArray($e)] : [],
             $e instanceof HttpExceptionInterface ? $e->getStatusCode() : 500,
         );
     }

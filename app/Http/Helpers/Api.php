@@ -36,4 +36,9 @@ class Api
 
         return response()->json($response, $status);
     }
+
+    public static function notFound()
+    {
+        abort(404, 'Not found.');
+    }
 }

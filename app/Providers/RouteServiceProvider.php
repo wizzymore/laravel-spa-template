@@ -29,13 +29,13 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         $this->routes(function () {
-            Route::middleware('web')
-                ->get('{any}', fn () => view('app'))
-                ->where('any', '.*');
-
             Route::middleware('api')
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
+
+            Route::middleware('web')
+                ->get('{any}', fn () => view('app'))
+                ->where('any', '.*');
         });
     }
 }

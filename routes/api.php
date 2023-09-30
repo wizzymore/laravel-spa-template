@@ -16,8 +16,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return response()->json([
-        'test' => 1
+    return Api::success([
+        'message' => 'Welcome to the API'
+    ]);
+});
+
+// Example of protected route
+Route::get('/protected', function () {
+    return Api::success([
+        'protected' => 'This is a protected route'
     ]);
 })->middleware('auth');
 
@@ -34,3 +41,7 @@ Route::get('/login', function () {
         'token' => $token->toString()
     ]);
 })->middleware('guest');
+
+Route::get('{any}', function () {
+    Api::notFound();
+})->where('any', '.*');
